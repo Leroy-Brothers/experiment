@@ -9,6 +9,19 @@ module.exports = {
       'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: config.siteTitleAlt,
+        short_name: config.siteTitleManifest,
+        description: config.siteDescription,
+        start_url: config.pathPrefix,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: 'standalone',
+        icon: config.favicon,
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     {
@@ -77,22 +90,9 @@ module.exports = {
       },
     }, // must be after other CSS plugins
     {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: config.siteTitleAlt,
-        short_name: config.siteTitleManifest,
-        description: config.siteDescription,
-        start_url: config.pathPrefix,
-        background_color: config.backgroundColor,
-        theme_color: config.themeColor,
-        display: 'standalone',
-        icon: config.favicon,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-sw',
       options: {
-        swPath: 'src/sw.js', // Default to 'src/sw.js'
+        swPath: 'static/service-worker.js', // Default to 'src/sw.js'
       },
     },
     // 'gatsby-plugin-sw',
