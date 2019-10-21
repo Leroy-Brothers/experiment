@@ -1,3 +1,7 @@
+const config = require('./config')
+
+const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby + Netlify CMS Starter',
@@ -72,7 +76,26 @@ module.exports = {
         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
       },
     }, // must be after other CSS plugins
-    'gatsby-plugin-sw',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: config.siteTitleAlt,
+        short_name: config.siteTitleManifest,
+        description: config.siteDescription,
+        start_url: config.pathPrefix,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: 'standalone',
+        icon: config.favicon,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sw',
+      options: {
+        swPath: 'src/sw.js', // Default to 'src/sw.js'
+      },
+    },
+    // 'gatsby-plugin-sw',
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify', // make sure to keep it last in the array
   ],

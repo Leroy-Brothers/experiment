@@ -8,5 +8,4 @@ workbox.precaching.precacheAndRoute([])
 
 // Another things
 self.addEventListener('push', () => {
-    // ...
 })
